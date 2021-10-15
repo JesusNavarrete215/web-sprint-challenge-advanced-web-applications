@@ -1,8 +1,13 @@
 import axios from "axios";
+
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 const articleService = () => {
-  axiosWithAuth().get("/articles");
+  axiosWithAuth()
+    .get("/articles")
+    .then((res) => {
+      res.data;
+    });
 };
 
 export default articleService;
