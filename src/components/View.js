@@ -2,18 +2,40 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import articleService from "../services/articleServices";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import axios from "axios";
 
 import Article from "./Article";
 import EditForm from "./EditForm";
+import { useHistory, useParams } from "react-router";
 
 const View = (props) => {
   const [articles, setArticles] = useState([]);
   const [editing, setEditing] = useState(false);
   const [editId, setEditId] = useState();
+  const { push } = useHistory();
 
-  const handleDelete = (id) => {};
+  const deleteArticle = (id) => {
+    setArticles(articles.filter((article) => article.id !== id));
+  };
 
-  const handleEdit = (article) => {};
+  const handleDelete = (id) => {
+    axiosWithAuth()
+      .delete(`http://localhost:5000/api/articles/${id}`)
+      .then((res) => {
+        deleteArticle(id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleEdit = (article) => {
+    axiosWithAuth()
+      .put(`http://localhost:5000/api/articles`, article)
+      .then((res) => {
+        setArticles(res.data);
+      });
+  };
 
   const handleEditSelect = (id) => {
     setEditing(true);
