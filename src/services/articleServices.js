@@ -1,7 +1,9 @@
+import axios from "axios";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
-
-const articleService = ()=> {
-}
+const articleService = () => {
+  axiosWithAuth().get("/articles");
+};
 
 export default articleService;
 
