@@ -12,7 +12,6 @@ const View = (props) => {
   const [articles, setArticles] = useState([]);
   const [editing, setEditing] = useState(false);
   const [editId, setEditId] = useState();
-  const { push } = useHistory();
 
   const deleteArticle = (id) => {
     setArticles(articles.filter((article) => article.id !== id));
@@ -48,12 +47,9 @@ const View = (props) => {
   };
 
   useEffect(() => {
-    axiosWithAuth()
-      .get("/articles")
-      .then((res) => {
-        setArticles(res.data);
-      })
-      .catch((err) => console.log(err));
+    articleService().then((data) => {
+      setArticles(data);
+    });
   }, []);
 
   return (

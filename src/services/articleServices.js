@@ -3,10 +3,11 @@ import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 const articleService = () => {
-  axiosWithAuth()
-    .get("/articles")
+  return axiosWithAuth()
+    .get(`/articles`)
     .then((res) => {
-      res.data;
+      const { data } = res;
+      return data;
     });
 };
 

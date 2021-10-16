@@ -39,13 +39,7 @@ const testArticles = [
   },
 ];
 test("renders component without errors", () => {
-  render(
-    <Article
-      article={testArticles}
-      handleDelete={null}
-      handleEditSelect={null}
-    />
-  );
+  render(<Article article={testArticles} />);
 });
 
 // test('renders headline, author from the article when passed in through props', ()=> {
@@ -54,8 +48,16 @@ test("renders component without errors", () => {
 // test('renders "Associated Press" when no author is given', ()=> {
 // });
 
-// test('executes handleDelete when the delete button is pressed', ()=> {
-// });
+test("executes handleDelete when the delete button is pressed", () => {
+  const getDataMock = jest.fn();
+
+  render(<Article handleDelete={getDataMock} />);
+
+  const button = screen.findByTestId("deleteButton");
+  userEvent.click(button);
+
+  expect(articles).toHaveLength();
+});
 
 //Task List:
 //1. Complete all above tests. Create test article data when needed.
