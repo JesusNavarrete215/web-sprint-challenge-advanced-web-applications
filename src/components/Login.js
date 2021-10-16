@@ -40,6 +40,7 @@ const Login = () => {
           <h1>Welcome to Blogger Pro</h1>
           <h2>Please enter your account information.</h2>
           <input
+            placeholder="Username"
             type="text"
             id="username"
             name="username"
@@ -47,6 +48,7 @@ const Login = () => {
             onChange={handleChange}
           />
           <input
+            placeholder="Password"
             type="password"
             id="password"
             name="password"
