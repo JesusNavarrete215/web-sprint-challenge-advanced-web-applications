@@ -31,9 +31,10 @@ const View = (props) => {
 
   const handleEdit = (article) => {
     axiosWithAuth()
-      .put(`http://localhost:5000/api/articles`, article)
+      .put(`http://localhost:5000/api/articles/${editId}`, article)
       .then((res) => {
         setArticles(res.data);
+        setEditing(false);
       });
   };
 
@@ -42,7 +43,9 @@ const View = (props) => {
     setEditId(id);
   };
 
-  const handleEditCancel = () => {};
+  const handleEditCancel = () => {
+    setEditing(false);
+  };
 
   useEffect(() => {
     axiosWithAuth()
