@@ -25,6 +25,7 @@ const Login = () => {
       .then((resp) => {
         localStorage.setItem("token", resp.data.token);
         push("/view");
+        window.location.reload(false);
       })
       .catch((err) => {
         console.log(err);

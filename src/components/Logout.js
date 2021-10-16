@@ -9,7 +9,8 @@ const Logout = () => {
       .post("/logout")
       .then((resp) => {
         localStorage.removeItem("token");
-        push("/login");
+        push("/");
+        window.location.reload(false);
       })
       .catch((err) => {
         console.log(err);

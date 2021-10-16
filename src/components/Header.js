@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Header = () => {
+  let isLoggedIn = localStorage.getItem("token");
+
   return (
     <HeaderStyle>
       <p>Blogger Pro</p>
@@ -13,9 +15,7 @@ const Header = () => {
         <li>
           <Link to="view">View</Link>
         </li>
-        <li>
-          <Link to="logout">Logout</Link>
-        </li>
+        <li>{isLoggedIn && <Link to="logout">Logout</Link>}</li>
       </MenuStyle>
     </HeaderStyle>
   );
