@@ -4,12 +4,12 @@ import axios from "axios";
 import { useHistory } from "react-router";
 
 const Login = () => {
-  const { push } = useHistory();
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
   const [value, setValue] = useState({
     username: "",
     password: "",
   });
+  const { push } = useHistory();
 
   const handleChange = (e) => {
     setValue({
@@ -22,12 +22,13 @@ const Login = () => {
     e.preventDefault();
     axios
       .post("http://localhost:5000/api/login", value)
-      .then((res) => {
-        localStorage.setItem("token", res.data.token);
+      .then((resp) => {
+        localStorage.setItem("token", resp.data.token);
         push("/view");
       })
       .catch((err) => {
-        setError(err);
+        console.log(err);
+        setError("Username and Password do not match!");
       });
   };
 
@@ -52,7 +53,7 @@ const Login = () => {
             onChange={handleChange}
           />
           <p id="error">{error}</p>
-          <button>Log in</button>
+          <button id="submit">Log in</button>
         </form>
       </ModalContainer>
     </ComponentContainer>

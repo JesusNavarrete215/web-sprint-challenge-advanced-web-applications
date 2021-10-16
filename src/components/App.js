@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import styled from "styled-components";
@@ -21,7 +21,7 @@ const App = () => {
         <Route path="/login">
           <Login />
         </Route>
-        <PrivateRoute path="/view" component={View} />
+        <PrivateRoute exact path="/view" component={View} />
         <PrivateRoute path="/logout" component={Logout} />
       </RouteContainer>
     </AppContainer>

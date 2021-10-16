@@ -47,9 +47,7 @@ const View = (props) => {
   };
 
   useEffect(() => {
-    articleService().then((data) => {
-      setArticles(data);
-    });
+    articleService().then((data) => setArticles(data));
   }, []);
 
   return (
